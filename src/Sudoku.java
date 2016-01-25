@@ -188,8 +188,8 @@ public class Sudoku extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame();
                 JOptionPane.showMessageDialog(frame,
-                    "Candy Jimenez - Bronco ID: 007728123\nYvonne Hong - Bronco ID: \n" +
-                    "Point and Clicker\nWinter 2013 ",
+                    "Josue Miramontes - Bronco ID: 008239023\nSang Choi - Bronco ID: \n" +
+                    "Point and Clicker\nWinter 2016",
                     "Info",
                     JOptionPane.PLAIN_MESSAGE);
             }
