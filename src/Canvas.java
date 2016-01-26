@@ -22,16 +22,16 @@ public class Canvas extends JComponent {
     public void paintComponent(Graphics g) {
         if(g instanceof Graphics2D){
             Graphics2D g2 = (Graphics2D)g;
-            Font font = new Font("Arial", Font.BOLD, 72);
+            Font font = new Font("Arial", Font.BOLD, 42);
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON);
             g2.setColor(Color.WHITE);
             g2.setFont(font);
-            g2.drawString("Hang-Man",125,80); 
+            g2.drawString("CS 245 Quarter Project",60,80); 
             Font font2 = new Font("Arial", Font.BOLD, 32);
             g2.setFont(font2);
-            g2.setColor(Color.RED);
-            g2.drawString("<TeamName>",190,300);
+            g2.setColor(Color.WHITE);
+            g2.drawString("<Team GUI>",190,300);
         }
     }  
 }

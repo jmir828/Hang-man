@@ -144,7 +144,7 @@ public class Sudoku extends JPanel{
                        public void actionPerformed(ActionEvent e){
                            repaint();
                            revalidate();
-                           frame.dispose();  
+                           frame.dispose(); 
                            Main.menu();
                        }
                    });
