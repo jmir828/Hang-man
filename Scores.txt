@@ -12,3 +12,5 @@ lkj 540
 josue 640
 lkjsd 190
 null 100
+null 680
+null 680
