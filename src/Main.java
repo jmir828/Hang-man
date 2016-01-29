@@ -17,7 +17,7 @@ import javax.swing.*;
 public class Main {
     //method: main
     //purpose: this main method runs the program
-    static JFrame frame = null;
+    public static JFrame frame = null;
     
     public static void main(String[] args){
         
@@ -30,10 +30,10 @@ public class Main {
     // method: createAndShowGUI
     // purpose: this method creates the title menu and the game menu 
     public static void createAndShowGUI() {
-        frame = new JFrame("HangMan");
-        final JPanel panel = new JPanel();
-        final JPanel cpanel = new JPanel();
-        System.out.println("CS 245: " + SwingUtilities.isEventDispatchThread());
+        frame = new JFrame("Hangman");
+        JPanel panel = new JPanel();
+        JPanel cpanel = new JPanel();
+        System.out.println("Window creation successful: " + SwingUtilities.isEventDispatchThread());
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600,400);
@@ -46,29 +46,10 @@ public class Main {
         UIManager.put("Button.foreground", Color.white);
         Font s = new Font("Serif", Font.BOLD, 14);
         UIManager.put("Button.font", s);
-        final Container container = frame.getContentPane();
-        final Canvas canvas = new Canvas();
+        Container container = frame.getContentPane();
+        Splash canvas = new Splash();
         container.add(canvas);
         
-        panel.getInputMap().put(KeyStroke.getKeyStroke("F1"),"doSomething");
-        panel.getActionMap().put("doSomething",new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame();
-                JOptionPane.showMessageDialog(frame,
-                    "Josue Miramontes - Bronco ID: 008239023\nSang Choi - Bronco ID:00???????\n" +
-                    "Point and Clicker\nWinter 2016 ",
-                    "Info",JOptionPane.PLAIN_MESSAGE);
-            }
-        });
-        
-        panel.getInputMap().put(KeyStroke.getKeyStroke("ESCAPE"),"Escape");
-        panel.getActionMap().put("Escape",new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
         
         ActionListener timer = new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -81,9 +62,9 @@ public class Main {
                 panel.add(play);
                 //  Action Listener for "New Game" button
                 ActionListener listener = new ActionListener(){
-                    final Container cp = frame.getContentPane();
-                    final HangMan game = new HangMan();
-                    final Component contents = game.createComponents();
+                    Container cp = frame.getContentPane();
+                    HangMan game = new HangMan();
+                    Component contents = game.createComponents();
                     // Event Listener for "New Game" button
                     public void actionPerformed(ActionEvent arg0)  {
             		cp.add(game);
@@ -144,8 +125,8 @@ public class Main {
                 credits.addActionListener(new ActionListener() { 
                 // Event Handler for "Credits" button
                     public void actionPerformed(ActionEvent e) {
-                        final Container cp = frame.getContentPane();
-                        final Credits c = new Credits();
+                        Container cp = frame.getContentPane();
+                        Credits c = new Credits();
                      
                         panel.setVisible(false);
                         cpanel.setVisible(true);
@@ -179,7 +160,7 @@ public class Main {
         frame = new JFrame("CS 245!!!!");
         final JPanel panel = new JPanel();
         final JPanel cpanel = new JPanel();
-        System.out.println("CS 245!!!lkjs"+ SwingUtilities.isEventDispatchThread());
+        System.out.println("CS 245!!"+ SwingUtilities.isEventDispatchThread());
         
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -191,7 +172,7 @@ public class Main {
         Font s = new Font("Serif", Font.BOLD, 14);
         UIManager.put("Button.font", s);
         final Container cp = frame.getContentPane();
-        final Canvas t = new Canvas();
+        final Splash t = new Splash();
         cp.add(t);
 
         t.setVisible(false);
@@ -276,5 +257,6 @@ public class Main {
             }
         });
     }
+    
     public static void dispose() { frame.dispose(); }
 }//end of main 

@@ -1,5 +1,5 @@
 /*************************************************************** 
-* file: Canvas.java 
+* file: Splash.java 
 * authors: Josue Miramontes, Sang Choi
 * class: CS 245 – Programming Graphical User Interface 
 * 
@@ -16,7 +16,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JComponent;
 
-public class Canvas extends JComponent {
+public class Splash extends JComponent {
     // method: paintComponent
     // purpose: changes the way the title menu looks
     public void paintComponent(Graphics g) {
@@ -27,7 +27,7 @@ public class Canvas extends JComponent {
             RenderingHints.VALUE_ANTIALIAS_ON);
             g2.setColor(Color.WHITE);
             g2.setFont(font);
-            g2.drawString("Hang-Man",125,80); 
+            g2.drawString("Hangman",125,80); 
             Font font2 = new Font("Arial", Font.BOLD, 32);
             g2.setFont(font2);
             g2.setColor(Color.RED);
