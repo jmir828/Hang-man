@@ -21,18 +21,18 @@ public class ScoreDisplay extends JPanel {
         playerScore();
     }
     
-    JPanel panel;
-    JPanel mainPanel;
-    JPanel clockPanel;
-    JPanel scorePanel;
-    JButton menuButton;
-    JButton viewScoreButton;
-    int score = Colors.score;
-    JButton quit;
-    JFrame frame = new JFrame("Player Score");
-    JLabel scores = new JLabel("Total Score");
-    JLabel totalScore = null;
-    String scoreString;
+    static JPanel panel;
+    static JPanel mainPanel;
+    static JPanel clockPanel;
+    static JPanel scorePanel;
+    static JButton menuButton;
+    static JButton viewScoreButton;
+    static int score = Colors.score;
+    static JButton quit;
+    static JFrame frame = new JFrame("Player Score");
+    static JLabel scores = new JLabel("Total Score");
+    static JLabel totalScore = null;
+    static String scoreString;
     Clock c = new Clock();
 
     public void playerScore() throws IOException{
