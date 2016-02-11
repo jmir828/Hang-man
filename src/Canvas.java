@@ -28,11 +28,11 @@ public class Canvas extends JComponent {
             RenderingHints.VALUE_ANTIALIAS_ON);
             g2.setColor(Color.WHITE);
             g2.setFont(font);
-            g2.drawString("HangMan",130,60); 
+            g2.drawString("Hangman",130,150); 
             Font font2 = new Font("Arial", Font.BOLD, 40);
             g2.setFont(font2);
             g2.setColor(Color.RED);
-            g2.drawString("S.Y.C",250,300);
+            g2.drawString("[TeamName]",180,220);
         }
     }
 }
