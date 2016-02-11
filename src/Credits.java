@@ -32,8 +32,8 @@ public class Credits extends JComponent{
             Font font2 = new Font("Arial", Font.BOLD, 20);
             g2.setFont(font2);
             g2.setColor(Color.GREEN);
-            g2.drawString("Josue Miramontes",220,200);
-            g2.drawString("Sang Choi",228,250);
+            g2.drawString("Josue Miramontes, 008239023",220,200);
+            g2.drawString("Sang Choi, 009327396",220,250);
         }
     }
 }
