@@ -50,7 +50,9 @@ public class Main {
         Canvas t = new Canvas();
         cp.add(t);
        
+        // Main Menu Buttons
         
+        // Play
         ActionListener timer = new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 t.setVisible(false);
@@ -70,6 +72,8 @@ public class Main {
                         panel.setVisible(false);
                     }
                 };
+                
+                // High Scores Button
                 play.addActionListener(listener);
                 JButton highScores = new JButton("High Scores");
                 highScores.setBounds(245,285,110,30);
@@ -94,11 +98,14 @@ public class Main {
                         });
                     }
                 });
+                
+                // Credits Button
                 panel.add(highScores);
                 JButton credits = new JButton("Credits");
                 credits.setBounds(245,325,110,30);
-                credits.setToolTipText("View who made this Game");  
+                credits.setToolTipText("Authors");  
                 panel.add(credits);
+                // Change next line to 'src//hangman.png' for Windows
                 ImageIcon ii = new ImageIcon("src/hangman.png");
                 JLabel label = new JLabel(ii);
                 label.setBounds(150,30,300,200);

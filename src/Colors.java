@@ -39,23 +39,23 @@ public class Colors extends JPanel{
     
     static JPanel panel;
     static JPanel mainPanel;
-    static JPanel clockPanel;
+    JPanel clockPanel;
     
-    static ImageIcon green = new ImageIcon("src/green.png");
-    static JButton greenButton = new JButton(green);
-    static ImageIcon purple = new ImageIcon("src/purple.png");
-    static JButton purpleButton = new JButton(purple);
-    static ImageIcon blue = new ImageIcon("src/blue.png");
-    static JButton blueButton = new JButton(blue);
-    static ImageIcon red = new ImageIcon("src/red.png");
-    static JButton redButton = new JButton(red);
-    static ImageIcon yellow = new ImageIcon("src/yellow.png");
-    static JButton yellowButton = new JButton(yellow);
-    static JLabel word = null;
+    ImageIcon green = new ImageIcon("src/green.png");
+    JButton greenButton = new JButton(green);
+    ImageIcon purple = new ImageIcon("src/purple.png");
+    JButton purpleButton = new JButton(purple);
+    ImageIcon blue = new ImageIcon("src/blue.png");
+    JButton blueButton = new JButton(blue);
+    ImageIcon red = new ImageIcon("src/red.png");
+    JButton redButton = new JButton(red);
+    ImageIcon yellow = new ImageIcon("src/yellow.png");
+    JButton yellowButton = new JButton(yellow);
+    JLabel word = null;
     int [] setWordColor = {1,2,3,4,5};
     static String color;
-    static JFrame frame = new JFrame("Game"); 
-    static JButton end = new JButton("End");
+    JFrame frame = new JFrame("Game"); 
+    JButton end = new JButton("End");
     String ans;
     Clock c = new Clock();
 

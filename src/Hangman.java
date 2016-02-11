@@ -31,8 +31,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Hangman extends JComponent
-{
+public class Hangman extends JComponent {
     Draw draw = null;
     JButton skipButton    = null;
     JButton newGameButton = null;
@@ -560,7 +559,7 @@ public class Hangman extends JComponent
         newGameButton.setToolTipText("Press to Start Game");
         newGameButton.addActionListener( controlButtonListener );
         pane.add( newGameButton );
-        skipButton = new JButton( "     skip      " );
+        skipButton = new JButton( "Skip" );
         skipButton.setFont( new Font("Helvetica", Font.PLAIN, 18) );
         skipButton.setBounds(75,160,300,200);
         skipButton.setToolTipText("Skip and go to next Game");
