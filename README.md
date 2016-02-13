@@ -1,3 +1,3 @@
 # Hang-man
 
-in the works
+Ready for 2nd Submit!
