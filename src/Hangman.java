@@ -47,48 +47,48 @@ public class Hangman extends JComponent {
     
     // method: setUpNewGame()
     // purpose: Sets up a new game 
-        public void setUpNewGame() {
-            numberWrong = 0;
-            score =100;
-            messageArea.setText("Current Score: " + score);
+    public void setUpNewGame() {
+        numberWrong = 0;
+        score =100;
+        messageArea.setText("Current Score: " + score);
 
-            //Enable alphabet buttons
-            Iterator alphaIterator = alphaButtonList.iterator();
-            while( alphaIterator.hasNext() ) {
-                ( (JButton)alphaIterator.next() ).setEnabled( true );
-            }
+        //Enable alphabet buttons
+        Iterator alphaIterator = alphaButtonList.iterator();
+        while( alphaIterator.hasNext() ) {
+            ( (JButton)alphaIterator.next() ).setEnabled( true );
+        }
 
-            //Disable new game button
-            newGameButton.setEnabled( false );
+        //Disable new game button
+        newGameButton.setEnabled( false );
 
-            //Color the word area
-            wordArea.setBackground(Color.black);
+        //Color the word area
+        wordArea.setBackground(Color.black);
 
-            //Present the new word
-            Random rand = new Random();
-            next = rand.nextInt(4);
-            targetWord  = targetWords[next];
+        //Present the new word
+        Random rand = new Random();
+        next = rand.nextInt(4);
+        targetWord  = targetWords[next];
 
-            //Fill the word-to-guess with ???
-            currentGuess = "?";
-            for( int i=0; i<targetWord.length()-1; i++) {
-                currentGuess = currentGuess.concat("?");
-            }
-            wordArea.setText( currentGuess );
+        //Fill the word-to-guess with ???
+        currentGuess = "?";
+        for( int i=0; i<targetWord.length()-1; i++) {
+            currentGuess = currentGuess.concat("?");
+        }
+        wordArea.setText( currentGuess );
 
-            //Nothing is drawn yet
-            headDrawn    = false;
-            bodyDrawn    = false;
-            leftArmDrawn = false;
-            rightArmDrawn= false;
-            leftLegDrawn = false;
-            rightLegDrawn= false;
-            draw.repaint();
-        }//setUpNewGame
+        //Nothing is drawn yet
+        headDrawn    = false;
+        bodyDrawn    = false;
+        leftArmDrawn = false;
+        rightArmDrawn= false;
+        leftLegDrawn = false;
+        rightLegDrawn= false;
+        draw.repaint();
+    }//setUpNewGame
         
      // method: processAnswer()
      // pupose: it determines if the input is correct or not 
- 	public void processAnswer(String answer) throws IOException {    
+    public void processAnswer(String answer) throws IOException {    
         char newCharacter = answer.charAt(0);
 
         // Look thru the target word.
@@ -103,9 +103,9 @@ public class Hangman extends JComponent {
                 nextGuess = nextGuess.concat( String.valueOf(newCharacter) );
                 foundAMatch = true;
             }
-            else {
+            else 
                 nextGuess = nextGuess.concat(String.valueOf( currentGuess.charAt(i) ));
-            }
+   
         }//for each character
         currentGuess = nextGuess;
         wordArea.setText( currentGuess );
@@ -128,7 +128,7 @@ public class Hangman extends JComponent {
 
         messageArea.setText("Current Score: " + score);
         // We have a winner
-        if( currentGuess.equals( targetWord ) ) {
+        if( currentGuess.equals( targetWord )) {
         	
             //Disable the buttons
             Iterator alphaIterator = alphaButtonList.iterator();
@@ -144,27 +144,25 @@ public class Hangman extends JComponent {
         // Wrong Answer
         //   Set out a new body part to be drawn by repaint()
             
-            // Is the game over?
-            if( numberWrong >= numberOfBodyParts )  {
-                //Disable the buttons
-                Iterator alphaIterator = alphaButtonList.iterator();
-                while( alphaIterator.hasNext() ) {
-                    ( (JButton)alphaIterator.next() ).setEnabled( false );
-                }
-                messageArea.setText( "Total score is " + score);
-                Colors c = new Colors();
-                c.run();
-                Main.dispose();
-                skipButton.setEnabled( true );
+        // Is the game over?
+        if( numberWrong >= numberOfBodyParts )  {
+            //Disable the buttons
+            Iterator alphaIterator = alphaButtonList.iterator();
+            while( alphaIterator.hasNext() ) {
+                ( (JButton)alphaIterator.next() ).setEnabled( false );
             }
-//        }//if else
+            messageArea.setText( "Total score is " + score);
+            Colors c = new Colors();
+            c.run();
+            Main.dispose();
+            skipButton.setEnabled( true );
+        }
     }//processAnswer
 
 
- //method: createNorthPane() 
- //Purpose: Create the North pane of the the game
- //where the word prompts will be displayed.
-
+     //method: createNorthPane() 
+     //Purpose: Create the North pane of the the game
+     //where the word prompts will be displayed.
     public Component createNorthPane() {
         JPanel pane = new JPanel();
         pane.setLayout( new BoxLayout( pane, BoxLayout.X_AXIS ) );
@@ -172,7 +170,7 @@ public class Hangman extends JComponent {
         pane.add(Box.createHorizontalGlue() );
         wordArea = new JLabel("Press New Game");
         wordArea.setFont( new Font("Helvetica", Font.PLAIN, 24) );
-        wordArea.setBackground(Color.black);
+        wordArea.setBackground(Color.BLACK);
         wordArea.setForeground(Color.RED);
         pane.add(wordArea);
         pane.add(Box.createHorizontalGlue() );
