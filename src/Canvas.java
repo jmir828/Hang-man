@@ -32,7 +32,7 @@ public class Canvas extends JComponent {
             Font font2 = new Font("Arial", Font.BOLD, 40);
             g2.setFont(font2);
             g2.setColor(Color.RED);
-            g2.drawString("Team GUI",180,220);
+            g2.drawString("Team GUI",205,220);
         }
     }
 }

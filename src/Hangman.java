@@ -15,6 +15,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -39,9 +40,7 @@ public class Hangman extends JComponent {
     JLabel    messageArea = null;
     java.util.List alphaButtonList = new ArrayList();
     Iterator alphaIterator = null;
-
-    boolean reset        = true;
-    boolean disable      = false;
+    
     boolean dontWrap     = false;
     boolean wrap         = true;
     boolean headDrawn    = false;
@@ -53,8 +52,6 @@ public class Hangman extends JComponent {
 
     // Target words
     String[] targetWords = {"abstract", "cemetery", "nurse", "pharmacy", "climbing"};
-    String losingPrefix  = "Game over! Total score is  ";
-    String win = "Total score is ";
     String currentGuess;
     String targetWord;
     JLabel space ;
@@ -70,16 +67,16 @@ public class Hangman extends JComponent {
         public void setUpNewGame() {
             numberWrong = 0;
             score =100;
-            messageArea.setText("Hangman");
+            messageArea.setText("Current Score: " + score);
 
             //Enable alphabet buttons
             Iterator alphaIterator = alphaButtonList.iterator();
             while( alphaIterator.hasNext() ) {
-                ( (JButton)alphaIterator.next() ).setEnabled( reset );
+                ( (JButton)alphaIterator.next() ).setEnabled( true );
             }
 
             //Disable new game button
-            newGameButton.setEnabled( disable );
+            newGameButton.setEnabled( false );
 
             //Color the word area
             wordArea.setBackground(Color.black);
@@ -129,9 +126,10 @@ public class Hangman extends JComponent {
         }//for each character
         currentGuess = nextGuess;
         wordArea.setText( currentGuess );
+        
         if( !foundAMatch ) {
                 numberWrong++;
-                score = score-10;
+                score -= 10;
                 switch (numberWrong){
                     case 1: { headDrawn     = true; break; }
                     case 2: { bodyDrawn     = true; break; }
@@ -143,43 +141,38 @@ public class Hangman extends JComponent {
                 }
                 // Repaint the gallows area JPanel
                 draw.repaint();
-            }
+        }
 
+        messageArea.setText("Current Score: " + score);
         // We have a winner
         if( currentGuess.equals( targetWord ) ) {
         	
             //Disable the buttons
             Iterator alphaIterator = alphaButtonList.iterator();
             while( alphaIterator.hasNext() ) {
-                ( (JButton)alphaIterator.next() ).setEnabled( disable );
+                ( (JButton)alphaIterator.next() ).setEnabled( false );
             }
-            messageArea.setText( losingPrefix + score);
-            skipButton.setEnabled( reset );
-//            newGameButton.setEnabled( reset );
+            messageArea.setText( "Game over! Total score is  " + score);
+            skipButton.setEnabled( true );
             Colors c = new Colors();
             c.run();
             Main.dispose();
-
-            
         }
         // Wrong Answer
         //   Set out a new body part to be drawn by repaint()
-//        else {
             
             // Is the game over?
-            if( numberWrong >= numberOfBodyParts ) 
-            {
+            if( numberWrong >= numberOfBodyParts )  {
                 //Disable the buttons
                 Iterator alphaIterator = alphaButtonList.iterator();
                 while( alphaIterator.hasNext() ) {
-                    ( (JButton)alphaIterator.next() ).setEnabled( disable );
+                    ( (JButton)alphaIterator.next() ).setEnabled( false );
                 }
-                messageArea.setText( win+ score);
-//                newGameButton.setEnabled( reset );
+                messageArea.setText( "Total score is " + score);
                 Colors c = new Colors();
                 c.run();
                 Main.dispose();
-                skipButton.setEnabled( reset );
+                skipButton.setEnabled( true );
             }
 //        }//if else
     }//processAnswer
@@ -197,13 +190,11 @@ public class Hangman extends JComponent {
         wordArea = new JLabel("Press New Game");
         wordArea.setFont( new Font("Helvetica", Font.PLAIN, 24) );
         wordArea.setBackground(Color.lightGray);
-        wordArea.setForeground(Color.black);
+        wordArea.setForeground(Color.RED);
         pane.add(wordArea);
         pane.add(Box.createHorizontalGlue() );
         return pane;
     }
-
-
 
     //method: createWestPane() 
     //Purpose: Create the West pane of the the game
@@ -212,7 +203,7 @@ public class Hangman extends JComponent {
         ActionListener alphabetButtonAction = new ActionListener() {
             public void actionPerformed( ActionEvent e ) {
                 JButton buttonPushed = (JButton)e.getSource();
-                buttonPushed.setEnabled( disable );
+                buttonPushed.setEnabled( false );
                 try {
                     processAnswer( buttonPushed.getText() );
                 } catch (IOException ex) {
@@ -226,14 +217,14 @@ public class Hangman extends JComponent {
         GridBagLayout gridbag = new GridBagLayout();
         GridBagConstraints c  = new GridBagConstraints();
         pane.setLayout( gridbag );
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.CENTER;
 
         JButton button = new JButton( "a" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
         c.gridx      = 0;
         c.gridy      = 0;
-        c.gridheight = 1;
+       // c.gridheight = 1;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -262,8 +253,8 @@ public class Hangman extends JComponent {
         button = new JButton( "d" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 0;
-        c.gridy      = 1;
+        c.gridx      = 3;
+        c.gridy      = 0;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -272,7 +263,7 @@ public class Hangman extends JComponent {
         button = new JButton( "e" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 1;
+        c.gridx      = 0;
         c.gridy      = 1;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
@@ -282,7 +273,7 @@ public class Hangman extends JComponent {
         button = new JButton( "f" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 2;
+        c.gridx      = 1;
         c.gridy      = 1;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
@@ -293,8 +284,8 @@ public class Hangman extends JComponent {
         button = new JButton( "g" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 0;
-        c.gridy      = 2;
+        c.gridx      = 2;
+        c.gridy      = 1;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -303,8 +294,8 @@ public class Hangman extends JComponent {
         button = new JButton( "h" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 1;
-        c.gridy      = 2;
+        c.gridx      = 3;
+        c.gridy      = 1;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -313,7 +304,7 @@ public class Hangman extends JComponent {
         button = new JButton( "i" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 2;
+        c.gridx      = 0;
         c.gridy      = 2;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
@@ -323,8 +314,8 @@ public class Hangman extends JComponent {
         button = new JButton( "j" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 0;
-        c.gridy      = 3;
+        c.gridx      = 1;
+        c.gridy      = 2;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -333,8 +324,8 @@ public class Hangman extends JComponent {
         button = new JButton( "k" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 1;
-        c.gridy      = 3;
+        c.gridx      = 2;
+        c.gridy      = 2;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -343,8 +334,8 @@ public class Hangman extends JComponent {
         button = new JButton( "l" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 2;
-        c.gridy      = 3;
+        c.gridx      = 3;
+        c.gridy      = 2;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -354,7 +345,7 @@ public class Hangman extends JComponent {
         c.weightx    = 0.5;
         c.weighty    = 0.5;
         c.gridx      = 0;
-        c.gridy      = 4;
+        c.gridy      = 3;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -364,7 +355,7 @@ public class Hangman extends JComponent {
         c.weightx    = 0.5;
         c.weighty    = 0.5;
         c.gridx      = 1;
-        c.gridy      = 4;
+        c.gridy      = 3;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -374,7 +365,7 @@ public class Hangman extends JComponent {
         c.weightx    = 0.5;
         c.weighty    = 0.5;
         c.gridx      = 2;
-        c.gridy      = 4;
+        c.gridy      = 3;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -383,8 +374,8 @@ public class Hangman extends JComponent {
         button = new JButton( "p" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 0;
-        c.gridy      = 5;
+        c.gridx      = 3;
+        c.gridy      = 3;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -393,8 +384,8 @@ public class Hangman extends JComponent {
         button = new JButton( "q" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 1;
-        c.gridy      = 5;
+        c.gridx      = 0;
+        c.gridy      = 4;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -403,8 +394,8 @@ public class Hangman extends JComponent {
         button = new JButton( "r" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 2;
-        c.gridy      = 5;
+        c.gridx      = 1;
+        c.gridy      = 4;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -413,8 +404,8 @@ public class Hangman extends JComponent {
         button = new JButton( "s" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 0;
-        c.gridy      = 6;
+        c.gridx      = 2;
+        c.gridy      = 4;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -423,8 +414,8 @@ public class Hangman extends JComponent {
         button = new JButton( "t" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 1;
-        c.gridy      = 6;
+        c.gridx      = 3;
+        c.gridy      = 4;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -433,8 +424,8 @@ public class Hangman extends JComponent {
         button = new JButton( "u" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 2;
-        c.gridy      = 6;
+        c.gridx      = 0;
+        c.gridy      = 5;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -443,8 +434,8 @@ public class Hangman extends JComponent {
         button = new JButton( "v" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 0;
-        c.gridy      = 7;
+        c.gridx      = 1;
+        c.gridy      = 5;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -453,8 +444,8 @@ public class Hangman extends JComponent {
         button = new JButton( "w" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 1;
-        c.gridy      = 7;
+        c.gridx      = 2;
+        c.gridy      = 5;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -463,8 +454,8 @@ public class Hangman extends JComponent {
         button = new JButton( "x" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 2;
-        c.gridy      = 7;
+        c.gridx      = 3;
+        c.gridy      = 5;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -473,8 +464,8 @@ public class Hangman extends JComponent {
         button = new JButton( "y" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 0;
-        c.gridy      = 8;
+        c.gridx      = 1;
+        c.gridy      = 6;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -483,8 +474,8 @@ public class Hangman extends JComponent {
         button = new JButton( "z" );
         c.weightx    = 0.5;
         c.weighty    = 0.5;
-        c.gridx      = 1;
-        c.gridy      = 8;
+        c.gridx      = 2;
+        c.gridy      = 6;
         gridbag.setConstraints( button, c );
         button.addActionListener( alphabetButtonAction );
         pane.add( button );
@@ -492,7 +483,7 @@ public class Hangman extends JComponent {
 
         alphaIterator = alphaButtonList.iterator();
         while( alphaIterator.hasNext() ) {
-            ( (JButton)alphaIterator.next() ).setEnabled( disable );
+            ( (JButton)alphaIterator.next() ).setEnabled( false );
         }
         return pane;
     }
@@ -547,24 +538,33 @@ public class Hangman extends JComponent {
      
 
         JPanel pane = new JPanel();
+        JPanel clkPane = new JPanel();
         pane.setBorder(BorderFactory.createLoweredBevelBorder());
         pane.setLayout( new BoxLayout( pane, BoxLayout.Y_AXIS ) );
+        pane.setAlignmentX(CENTER_ALIGNMENT);
         Clock clock = new Clock();
-        pane.add( clock.time );
+        clkPane.add(clock.time);
+        pane.add(clkPane);
+        
         pane.setVisible( true );
         clock.start();
+        
+        JPanel buttons = new JPanel();
+        buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
+        
         newGameButton = new JButton( "New Game" );
         newGameButton.setFont( new Font("Helvetica", Font.PLAIN, 18) );
         newGameButton.setBounds(75,100,300,200);
         newGameButton.setToolTipText("Press to Start Game");
         newGameButton.addActionListener( controlButtonListener );
-        pane.add( newGameButton );
+        buttons.add( newGameButton );
         skipButton = new JButton( "Skip" );
         skipButton.setFont( new Font("Helvetica", Font.PLAIN, 18) );
         skipButton.setBounds(75,160,300,200);
         skipButton.setToolTipText("Skip and go to next Game");
         skipButton.addActionListener( controlButtonListener );
-        pane.add( skipButton);
+        buttons.add( skipButton);
+        pane.add(buttons);
         return pane;
     }
 
@@ -572,13 +572,20 @@ public class Hangman extends JComponent {
     //Purpose: Create the GUI for the game.
     public Component createComponents() {
         JPanel pane = new JPanel();
+        Component alphabet = createWestPane();
+        alphabet.setBounds(new Rectangle(100,75));
+        JPanel eastPane = new JPanel();
+        eastPane.setLayout( new BoxLayout( eastPane, BoxLayout.Y_AXIS ) );
+        eastPane.add(createEastPane());
+        eastPane.add(alphabet);
+        
         pane.setBorder(BorderFactory.createLoweredBevelBorder());
         pane.setLayout(new BorderLayout() );
         pane.add( createNorthPane(),  BorderLayout.NORTH );
-	  	pane.add( createWestPane(),   BorderLayout.WEST );
+	// pane.add( createWestPane(),   BorderLayout.WEST );
         pane.add( createSouthPane(),  BorderLayout.SOUTH );
         pane.add( createCenterPane(), BorderLayout.CENTER );
-        pane.add( createEastPane(),   BorderLayout.EAST );
+        pane.add( eastPane,   BorderLayout.EAST );
 
         return pane;
     }
