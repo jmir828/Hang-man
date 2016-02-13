@@ -9,28 +9,14 @@
 * purpose: This class implements the hangman game
 * 
 ****************************************************************/
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class Hangman extends JComponent {
     Draw draw = null;
@@ -41,8 +27,6 @@ public class Hangman extends JComponent {
     java.util.List alphaButtonList = new ArrayList();
     Iterator alphaIterator = null;
     
-    boolean dontWrap     = false;
-    boolean wrap         = true;
     boolean headDrawn    = false;
     boolean bodyDrawn    = false;
     boolean leftArmDrawn = false;
@@ -54,7 +38,6 @@ public class Hangman extends JComponent {
     String[] targetWords = {"abstract", "cemetery", "nurse", "pharmacy", "climbing"};
     String currentGuess;
     String targetWord;
-    JLabel space ;
     
     int numberWrong       = 0;
     int numberOfBodyParts = 6;
@@ -82,8 +65,8 @@ public class Hangman extends JComponent {
             wordArea.setBackground(Color.black);
 
             //Present the new word
-            double numb = Math.random();
-            next = (int)( numb * targetWords.length );
+            Random rand = new Random();
+            next = rand.nextInt(4);
             targetWord  = targetWords[next];
 
             //Fill the word-to-guess with ???

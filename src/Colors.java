@@ -14,7 +14,6 @@
 import java.awt.*;
 import java.util.Random;
 import javax.swing.*;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -22,8 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.border.EmptyBorder;
 
-
-public class Colors extends JPanel{
+public class Colors extends JPanel {
     // method: run
     // purpose: to execute the program
     public void run() {
@@ -82,8 +80,6 @@ public class Colors extends JPanel{
 
         clockPanel.add(c.time);
         c.start();
-
-
 
         panel.setLayout(null);
 
@@ -196,13 +192,13 @@ public class Colors extends JPanel{
             word.setForeground(Color.yellow);
     }
     
-    public void newPosition(){
-        Random rgen = new Random();
+    public void newPosition() {
+        Random rand = new Random();
         int [] array = {1,2,3,4,5};
         int arraySize = 5;
         
         for (int i = 0; i < array.length; i++) {
-            int randomPosition = rgen.nextInt(array.length);
+          int randomPosition = rand.nextInt(array.length);
             int temp = array[i];
             array[i] = array[randomPosition];
             array[randomPosition]=temp;

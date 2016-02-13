@@ -10,11 +10,7 @@
 * like
 * 
 ****************************************************************/
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.awt.*;
 import javax.swing.JComponent;
 
 public class Canvas extends JComponent {
