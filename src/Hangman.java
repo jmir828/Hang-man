@@ -172,7 +172,7 @@ public class Hangman extends JComponent {
         pane.add(Box.createHorizontalGlue() );
         wordArea = new JLabel("Press New Game");
         wordArea.setFont( new Font("Helvetica", Font.PLAIN, 24) );
-        wordArea.setBackground(Color.lightGray);
+        wordArea.setBackground(Color.black);
         wordArea.setForeground(Color.RED);
         pane.add(wordArea);
         pane.add(Box.createHorizontalGlue() );

@@ -55,7 +55,7 @@ public class Main {
                 t.setVisible(false);
                 panel.setLayout(null);
                 JButton play = new JButton("Play");
-                play.setBounds(245,245,110,30);
+                play.setBounds(235,245,135,30);
                 play.setToolTipText("Start Game");  
                 panel.add(play);
                 ActionListener listener = new ActionListener(){
@@ -73,7 +73,7 @@ public class Main {
                 // High Scores Button
                 play.addActionListener(listener);
                 JButton highScores = new JButton("High Scores");
-                highScores.setBounds(245,285,110,30);
+                highScores.setBounds(235,285,135,30);
                 highScores.setToolTipText("View High Scores");  
                 highScores.addActionListener(new ActionListener(){
                     public void actionPerformed(ActionEvent e){
@@ -99,7 +99,7 @@ public class Main {
                 // Credits Button
                 panel.add(highScores);
                 JButton credits = new JButton("Credits");
-                credits.setBounds(245,325,110,30);
+                credits.setBounds(235,325,135,30);
                 credits.setToolTipText("Authors");  
                 panel.add(credits);
                 // Change next line to 'src//hangman.png' for Windows
@@ -120,7 +120,7 @@ public class Main {
                          cpanel.setLayout(null);
                          cp.add(c);
                          JButton back = new JButton("Back");
-                         back.setBounds(30,325,110,30);
+                         back.setBounds(30,325,135,30);
                          back.setToolTipText("Go Back to menu");
                          c.add(back);
 
