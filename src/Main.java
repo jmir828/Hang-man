@@ -4,9 +4,9 @@
 * class: CS 245 – Programming Graphical User Interface 
 * 
 * assignment: Quarter Project program 2 
-* date last modified: 
+* date last modified: 2/14/2016
 * 
-* purpose: This class implements the games
+* purpose: This class acts as driver for Hangman game.
 * 
 ****************************************************************/ 
 import java.awt.*;
@@ -15,16 +15,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Main {
-    //method: main
-    //purpose: this main method runs the program
-    static JFrame f = null;
-    public static void main(String[] args){
-        SwingUtilities.invokeLater(new Runnable(){
-            public void run(){
-                menu(); 
-            }
-        });
-    }
     // method: createAndShowGUI
     // purpose: this method creates the title menu and the game menu 
     public static void menu() {
@@ -102,13 +92,15 @@ public class Main {
                 credits.setBounds(235,325,135,30);
                 credits.setToolTipText("Authors");  
                 panel.add(credits);
-                // Change next line to 'src//hangman.png' for Windows
+                
+                // Change string in next line to 'src//hangman.png'
+                // for Windows Systems
                 ImageIcon ii = new ImageIcon("src/hangman.png");
                 JLabel label = new JLabel(ii);
                 label.setBounds(150,30,300,200);
                 panel.add(label);
                 f.add(panel);
-                panel.setBackground(Color.BLACK);
+                panel.setBackground(Color.black);
             
                 credits.addActionListener(new ActionListener() { 
                     public void actionPerformed(ActionEvent e) {
@@ -137,7 +129,21 @@ public class Main {
         new Timer(3000, timer).start(); 
     }
     
+    // method: dispose
+    // purpose: This method terminates an active frame.
+    //          used for moving from window to window
     public static void dispose(){
         f.dispose();
     }    
+    
+    //method: main
+    //purpose: this main method runs the program
+    static JFrame f = null;
+    public static void main(String[] args){
+        SwingUtilities.invokeLater(new Runnable(){
+            public void run(){
+                menu(); 
+            }
+        });
+    }
 }//end of main 

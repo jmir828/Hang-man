@@ -4,10 +4,9 @@
 * class: CS 245 – Programming Graphical User Interface 
 * 
 * assignment: Quarter Project program 2
-* date last modified:
+* date last modified: 2/14/2016
 *  
-* purpose: This class changes the way the Highscores frame would look
-* like
+* purpose: This class displays the 'HighScore' window to player
 * 
 ****************************************************************/
 import java.awt.Color;

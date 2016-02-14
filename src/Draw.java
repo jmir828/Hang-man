@@ -4,10 +4,10 @@
 * class: CS 245 – Programming Graphical User Interface 
 * 
 * assignment: Quarter Project program 2
-* date last modified: 
+* date last modified: 2/14/2016
 * 
-* purpose: This class draws the man that will be hang if the player
-* guess incorrectly 
+* purpose: This class draws hangman body parts when players
+*          guess incorrectly 
 * 
 ****************************************************************/
 import javax.swing.*;
@@ -15,7 +15,10 @@ import java.awt.*;
 import javax.swing.border.Border;
 
     class Draw extends JPanel {
-        Hangman controller;
+        private Hangman controller;
+        
+        // constructor: Draw
+        // purpose: initializes canvas for drawing hangman body parts
         public Draw(Hangman controller) {
             this.controller = controller;
             Border raisedBevel = BorderFactory.createRaisedBevelBorder();

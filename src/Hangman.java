@@ -4,7 +4,7 @@
 * class: CS 245 – Programming Graphical User Interface 
 * 
 * assignment: Quarter Project program 2 
-* date last modified: 
+* date last modified: 2/14/2016
 * 
 * purpose: This class implements the hangman game
 * 
@@ -19,31 +19,30 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Hangman extends JComponent {
-    Draw draw = null;
-    JButton skipButton    = null;
-    JButton newGameButton = null;
-    JLabel    wordArea    = null;
-    JLabel    messageArea = null;
-    java.util.List alphaButtonList = new ArrayList();
-    Iterator alphaIterator = null;
+    private Draw draw = null;
+    private JButton skipButton    = null;
+    private JButton newGameButton = null;
+    private JLabel    wordArea    = null;
+    private JLabel    messageArea = null;
+    private java.util.List alphaButtonList = new ArrayList();
+    private Iterator alphaIterator = null;
     
-    boolean headDrawn    = false;
-    boolean bodyDrawn    = false;
-    boolean leftArmDrawn = false;
-    boolean rightArmDrawn= false;
-    boolean leftLegDrawn = false;
-    boolean rightLegDrawn= false;
+    public boolean headDrawn    = false;
+    public boolean bodyDrawn    = false;
+    public boolean leftArmDrawn = false;
+    public boolean rightArmDrawn= false;
+    public boolean leftLegDrawn = false;
+    public boolean rightLegDrawn= false;
 
     // Target words
-    String[] targetWords = {"abstract", "cemetery", "nurse", "pharmacy", "climbing"};
-    String currentGuess;
-    String targetWord;
+    private final String[] targetWords = {"abstract", "cemetery", "nurse", "pharmacy", "climbing"};
+    private String currentGuess;
+    private String targetWord;
     
-    int numberWrong       = 0;
-    int numberOfBodyParts = 6;
+    private int numberWrong = 0;
+    private final int numberOfBodyParts = 6;
     public static int score = 0;
-    int next              = 0;
-    
+    private int next = 0;
     
     // method: setUpNewGame()
     // purpose: Sets up a new game 
@@ -142,7 +141,7 @@ public class Hangman extends JComponent {
             Main.dispose();
         }
         // Wrong Answer
-        //   Set out a new body part to be drawn by repaint()
+        // Set out a new body part to be drawn by repaint()
             
         // Is the game over?
         if( numberWrong >= numberOfBodyParts )  {
@@ -159,7 +158,6 @@ public class Hangman extends JComponent {
         }
     }//processAnswer
 
-
      //method: createNorthPane() 
      //Purpose: Create the North pane of the the game
      //where the word prompts will be displayed.
@@ -168,9 +166,10 @@ public class Hangman extends JComponent {
         pane.setLayout( new BoxLayout( pane, BoxLayout.X_AXIS ) );
         pane.setBorder( BorderFactory.createEmptyBorder(0, 10, 10, 10) );
         pane.add(Box.createHorizontalGlue() );
+        pane.setBackground(Color.black);
         wordArea = new JLabel("Press New Game");
         wordArea.setFont( new Font("Helvetica", Font.PLAIN, 24) );
-        wordArea.setBackground(Color.BLACK);
+        wordArea.setBackground(Color.lightGray);
         wordArea.setForeground(Color.RED);
         pane.add(wordArea);
         pane.add(Box.createHorizontalGlue() );

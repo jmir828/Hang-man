@@ -4,10 +4,9 @@
 * class: CS 245 – Programming Graphical User Interface 
 * 
 * assignment: Quarter Project program 2
-* date last modified: 
+* date last modified: 2/14/2016
 * 
-* purpose: This class changes the way the credits frame would look
-* like
+* purpose: This class displays 'Credits' window to player
 * 
 ****************************************************************/
 import java.awt.Color;
@@ -19,7 +18,7 @@ import javax.swing.JComponent;
 
 public class Credits extends JComponent{
     // method: Credits
-    // purpose: changes the way the credits menu looks like
+    // purpose: changes the way the credits menu looks
     public void paintComponent(Graphics g) {
         if(g instanceof Graphics2D){
             Graphics2D g2 = (Graphics2D)g;

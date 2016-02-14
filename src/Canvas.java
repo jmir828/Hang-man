@@ -4,10 +4,10 @@
 * class: CS 245 – Programming Graphical User Interface 
 * 
 * assignment: Quarter Project program 2 
-* date last modified: 
+* date last modified: 2/14/2016
 * 
 * purpose: This class changes the way the Canvas frame would look
-* like
+*          like
 * 
 ****************************************************************/
 import java.awt.*;

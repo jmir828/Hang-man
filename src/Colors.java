@@ -4,13 +4,11 @@
 * class: CS 245 – Programming Graphical User Interface 
 * 
 * assignment: Quarter Project program 2 
-* date last modified: 
+* date last modified: 2/14/2016
 * 
 * purpose: This class implements the color pressing game
 * 
 ****************************************************************/
-
-
 import java.awt.*;
 import java.util.Random;
 import javax.swing.*;
@@ -22,6 +20,30 @@ import java.util.logging.Logger;
 import javax.swing.border.EmptyBorder;
 
 public class Colors extends JPanel {
+    private static int numberOfRounds;
+    public static int score = Hangman.score;
+    
+    public static JPanel panel;
+    public static JPanel mainPanel;
+    private JPanel clockPanel;
+    
+    private ImageIcon green = new ImageIcon("src/green.png");
+    private JButton greenButton = new JButton(green);
+    private ImageIcon purple = new ImageIcon("src/purple.png");
+    private JButton purpleButton = new JButton(purple);
+    private ImageIcon blue = new ImageIcon("src/blue.png");
+    private JButton blueButton = new JButton(blue);
+    private ImageIcon red = new ImageIcon("src/red.png");
+    private JButton redButton = new JButton(red);
+    private ImageIcon yellow = new ImageIcon("src/yellow.png");
+    private JButton yellowButton = new JButton(yellow);
+    private JLabel word = null;
+    private int [] setWordColor = {1,2,3,4,5};
+    private static String color;
+    private JFrame frame = new JFrame("Game"); 
+    private JButton end = new JButton("End");
+    private Clock c = new Clock();
+    
     // method: run
     // purpose: to execute the program
     public void run() {
@@ -31,31 +53,6 @@ public class Colors extends JPanel {
             }
         });
     }
-    
-    int numberOfRounds;
-    static int score = Hangman.score;
-    
-    static JPanel panel;
-    static JPanel mainPanel;
-    JPanel clockPanel;
-    
-    ImageIcon green = new ImageIcon("src/green.png");
-    JButton greenButton = new JButton(green);
-    ImageIcon purple = new ImageIcon("src/purple.png");
-    JButton purpleButton = new JButton(purple);
-    ImageIcon blue = new ImageIcon("src/blue.png");
-    JButton blueButton = new JButton(blue);
-    ImageIcon red = new ImageIcon("src/red.png");
-    JButton redButton = new JButton(red);
-    ImageIcon yellow = new ImageIcon("src/yellow.png");
-    JButton yellowButton = new JButton(yellow);
-    JLabel word = null;
-    int [] setWordColor = {1,2,3,4,5};
-    static String color;
-    JFrame frame = new JFrame("Game"); 
-    JButton end = new JButton("End");
-    String ans;
-    Clock c = new Clock();
 
     // method: newGame
     // purpose: create a new Game
@@ -75,14 +72,11 @@ public class Colors extends JPanel {
         mainPanel.setBorder(new EmptyBorder(1,1,1,1));
         panel.setPreferredSize(new Dimension(600,380));
         clockPanel.setPreferredSize(new Dimension(600,20));
-
         clockPanel.setBackground(Color.WHITE);
-
         clockPanel.add(c.time);
         c.start();
 
         panel.setLayout(null);
-
         panel.setBackground(Color.WHITE);
         panel.add(greenButton);
         panel.add(purpleButton);
@@ -94,7 +88,6 @@ public class Colors extends JPanel {
         clockPanel.setVisible(true);
         mainPanel.add(panel,BorderLayout.CENTER);
         mainPanel.add(clockPanel, BorderLayout.NORTH);
-        
         frame.add(mainPanel);
         
         newPosition();
@@ -151,6 +144,8 @@ public class Colors extends JPanel {
         });
     }
     
+    // method: newWord
+    // purpose: selects new color (word) randomly from selection
     public void newWord(){
         Random randomWord = new Random();
         String [] wordColor = {"BLUE", "GREEN", "RED","PURPLE", "YELLOW"};
@@ -192,6 +187,8 @@ public class Colors extends JPanel {
             word.setForeground(Color.yellow);
     }
     
+    // method: newPosition
+    // purpose: sets new position to button upon player decision
     public void newPosition() {
         Random rand = new Random();
         int [] array = {1,2,3,4,5};
@@ -268,7 +265,8 @@ public class Colors extends JPanel {
             arraySize--;  
         }
 }
-    
+    // method: displayScore
+    // purpose: this method displays player score when 'Colors' game is over
     public void displayScore(){
         ScoreDisplay s = new ScoreDisplay();
             try {
@@ -279,6 +277,9 @@ public class Colors extends JPanel {
            frame.dispose();
     }
     
+    // method: action
+    // purpose: this method reacts to changes in game. When a player chooses
+    //          a colored button, this method will change accordingly
     public void action(){
         if(numberOfRounds < 5){
             newPosition();

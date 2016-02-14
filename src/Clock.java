@@ -4,9 +4,9 @@
 * class: CS 245 – Programming Graphical User Interface 
 * 
 * assignment: Quarter Project program 2 
-* date last modified: 
+* date last modified: 2/14/2016
 * 
-* purpose: This class implements the display clock
+* purpose: This class implements the displayed clock
 * 
 ****************************************************************/
 import javax.swing.*;
@@ -15,7 +15,7 @@ import java.util.Timer;
 import java.text.SimpleDateFormat;
 
 class Clock {
-    final JLabel time = new JLabel();
+    public JLabel time = new JLabel();
     private final SimpleDateFormat sdf  = new SimpleDateFormat("hh:mm");
     private int   currentSecond;
     private Calendar calendar;

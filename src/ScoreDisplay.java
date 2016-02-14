@@ -4,7 +4,7 @@
 * class: CS 245 – Programming Graphical User Interface 
 * 
 * assignment: Quarter Project program 2 
-* date last modified: 
+* date last modified: 2/14/2016
 * 
 * purpose: This class presents Player Score
 * 
@@ -17,24 +17,29 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class ScoreDisplay extends JPanel {
+    // method: run
+    // purpose: calls run and initializes frame for Score display
     public void run() throws IOException{
         playerScore();
     }
     
-    JPanel panel;
-    JPanel mainPanel;
-    JPanel clockPanel;
-    JPanel scorePanel;
-    JButton menuButton;
-    JButton viewScoreButton;
-    int score = Colors.score;
-    JButton quit;
-    JFrame frame = new JFrame("Player Score");
-    JLabel scores = new JLabel("Total Score");
-    JLabel totalScore = null;
-    String scoreString;
-    Clock c = new Clock();
+    private JPanel panel;
+    private JPanel mainPanel;
+    private JPanel clockPanel;
+    private JPanel scorePanel;
+    private JButton menuButton;
+    private JButton viewScoreButton;
+    private int score = Colors.score;
+    private JButton quit;
+    private JFrame frame = new JFrame("Player Score");
+    private JLabel scores = new JLabel("Total Score");
+    private JLabel totalScore = null;
+    private String scoreString;
+    private Clock c = new Clock();
 
+    // method: playerScore
+    // purpose: finish a game. Player will be sent to Score display with
+    //          values provided by this method
     public void playerScore() throws IOException{
         Font s = new Font("Serif", Font.BOLD, 14);
         UIManager.put("Button.font", s);
