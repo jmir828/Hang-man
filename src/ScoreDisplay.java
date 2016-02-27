@@ -80,6 +80,10 @@ public class ScoreDisplay extends JPanel {
         panel.add(viewScoreButton);
         viewScoreButton.setVisible(true);
         
+        // Saves current score into the file
+        ScoreFile sf = new ScoreFile();
+        sf.addScore(score, "Placeholder Name");
+        
         viewScoreButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 panel.setVisible(false);
