@@ -82,7 +82,8 @@ public class ScoreDisplay extends JPanel {
         
         // Saves current score into the file
         ScoreFile sf = new ScoreFile();
-        sf.addScore(score, "Placeholder Name");
+        String ans = JOptionPane.showInputDialog("Enter you name:", "Name");
+        sf.addScore(score, ans);
         
         viewScoreButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){

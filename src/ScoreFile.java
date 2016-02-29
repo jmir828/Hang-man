@@ -19,9 +19,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class ScoreFile {
-    
-    ArrayList<Score> highScore;
-    
+    ArrayList<Score> highScore;  
     ObjectOutputStream output;
     ObjectInputStream input;
     
@@ -137,7 +135,6 @@ public class ScoreFile {
         highScore.add(new Score(score, name));
         update();
     }
-    
 }
 
 /*
