@@ -59,11 +59,11 @@ public class HighScores extends JComponent {
             score4.setFont(scoresFont);
             score4.drawString("4 " + sf.highScore.get(3).getName() + " " + sf.highScore.get(3).getScore(),120,240);
             
-//            Graphics2D score5 = (Graphics2D)g;
-//            score5.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//            score5.setColor(Color.WHITE);
-//            score5.setFont(scoresFont);
-//            score5.drawString("5 " + sf.highScore.get(4).getName() + " " + sf.highScore.get(4).getScore(),120,280);
+            Graphics2D score5 = (Graphics2D)g;
+            score4.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            score4.setColor(Color.WHITE);
+            score4.setFont(scoresFont);
+            score4.drawString("5 " + sf.highScore.get(4).getName() + " " + sf.highScore.get(4).getScore(),120,280);
         }
     }
 }
