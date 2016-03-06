@@ -508,6 +508,7 @@ public class Hangman extends JComponent {
                 }
                 else // User triggers 'Skip' 
                 {   
+                    score = 0;
                     Colors c = new Colors();
                         c.run();
  

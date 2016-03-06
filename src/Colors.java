@@ -47,8 +47,8 @@ public class Colors extends JPanel {
     // method: run
     // purpose: to execute the program
     public void run() {
-        SwingUtilities.invokeLater(new Runnable(){
-            public void run(){
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
                 newGame();
             }
         });
@@ -265,17 +265,27 @@ public class Colors extends JPanel {
             arraySize--;  
         }
 }
-    // method: displayScore
-    // purpose: this method displays player score when 'Colors' game is over
-    public void displayScore(){
-        ScoreDisplay s = new ScoreDisplay();
-            try {
-                s.run();
-            } catch (IOException ex) {
-                Logger.getLogger(Colors.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           frame.dispose();
-    }
+//    // method: displayScore
+//    // purpose: this method displays player score when 'Colors' game is over
+//    public void displayScore(){
+//        ScoreDisplay s = new ScoreDisplay();
+//            try {
+//                s.run();
+//            } catch (IOException ex) {
+//                Logger.getLogger(Colors.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//           frame.dispose();
+//    }
+    
+    public void startSudoku(){
+            Sudoku s = new Sudoku();
+                try {
+                    s.run();
+                } catch (IOException ex) {
+                    Logger.getLogger(Colors.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               frame.dispose();
+        }
     
     // method: action
     // purpose: this method reacts to changes in game. When a player chooses
@@ -286,7 +296,8 @@ public class Colors extends JPanel {
             newWord();}
         else{
             frame.dispose();
-            displayScore();
+            //displayScore();
+            startSudoku();
         }
     }
 }

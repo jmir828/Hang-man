@@ -29,7 +29,7 @@ public class ScoreDisplay extends JPanel {
     private JPanel scorePanel;
     private JButton menuButton;
     private JButton viewScoreButton;
-    private int score = Colors.score;
+    private int score = Sudoku.score;
     private JButton quit;
     private JFrame frame = new JFrame("Player Score");
     private JLabel scores = new JLabel("Total Score");
@@ -51,8 +51,8 @@ public class ScoreDisplay extends JPanel {
         mainPanel = new JPanel(new BorderLayout(3,3));
         clockPanel = new JPanel();
         scorePanel = new JPanel();
-        viewScoreButton = new JButton("View Score");
-        viewScoreButton.setToolTipText("Go to Player's Score");
+        viewScoreButton = new JButton("End Game");
+        viewScoreButton.setToolTipText("Return to Main Menu");
         menuButton = new JButton("Main Menu");
         menuButton.setToolTipText("Go Back to menu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,31 +82,31 @@ public class ScoreDisplay extends JPanel {
         
         // Saves current score into the file
         ScoreFile sf = new ScoreFile();
-        String ans = JOptionPane.showInputDialog("Enter you name:", "Name");
+        String ans = JOptionPane.showInputDialog("See if you made the Leader Board!", "Enter Name");
         sf.addScore(score, ans);
         
         viewScoreButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                panel.setVisible(false);
-                scorePanel.setVisible(true);
-                mainPanel.add(scorePanel, BorderLayout.CENTER);
-                scoreString = String.valueOf(score);
-                totalScore = new JLabel (scoreString);
-                totalScore.setFont( new Font("Helvetica", Font.PLAIN, 28) );
-                totalScore.setBounds(220,50,300,100);
-                totalScore.setForeground(Color.blue);
-                scorePanel.add(totalScore);
-                scorePanel.add(menuButton);
-                menuButton.setBounds(10,300,130,30);
-                
-                menuButton.addActionListener(new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
+//                panel.setVisible(false);
+//                //scorePanel.setVisible(true);
+//                mainPanel.add(scorePanel, BorderLayout.CENTER);
+//                scoreString = String.valueOf(score);
+////                totalScore = new JLabel (scoreString);
+////                totalScore.setFont( new Font("Helvetica", Font.PLAIN, 28) );
+////                totalScore.setBounds(220,50,300,100);
+////                totalScore.setForeground(Color.blue);
+////                scorePanel.add(totalScore);
+//                scorePanel.add(menuButton);
+//                menuButton.setBounds(10,300,130,30);
+//                
+//                menuButton.addActionListener(new ActionListener(){
+//                    public void actionPerformed(ActionEvent e){
                         repaint();
                         revalidate();
                         frame.dispose();  
                         Main.menu();
-                    }
-                });
+//                    }
+//                });
             }
         
         });   
