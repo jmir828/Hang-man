@@ -162,6 +162,33 @@ public class Sudoku extends JPanel{
     mainPanel.add(panel,BorderLayout.CENTER);
     mainPanel.add(clockPanel, BorderLayout.NORTH);
     frame.add(mainPanel);
+    
+         //Key Bindings
+        
+        JFrame frame = new JFrame("Info");
+        frame.setPreferredSize(new Dimension(300,200));
+        frame.pack();
+        JLabel label = new JLabel("InfoLabel");
+        label.setText("<html>Sang Choi 009327396<br>Josue Miramontes 008239023<br>CS245 Quarter Project<br>Winter 2016</html>");
+        frame.add(label);
+        
+        Action showInfo = new AbstractAction(){
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(true);
+            }
+        };
+        
+        Action close = new AbstractAction(){
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        };
+        
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "showInfo");
+        panel.getActionMap().put("showInfo", showInfo);
+        
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "close");
+        panel.getActionMap().put("close", close);
         
     }
     public void textArrayInitializor(){ 

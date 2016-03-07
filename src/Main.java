@@ -36,7 +36,36 @@ public class Main {
         Container cp = f.getContentPane();
         Canvas t = new Canvas();
         cp.add(t);
-       
+        
+        //Key Bindings
+        
+        JFrame frame = new JFrame("Info");
+        frame.setPreferredSize(new Dimension(300,200));
+        frame.pack();
+        JLabel label = new JLabel("InfoLabel");
+        label.setText("<html>Sang Choi 009327396<br>Josue Miramontes 008239023<br>CS245 Quarter Project<br>Winter 2016</html>");
+        frame.add(label);
+        
+        Action showInfo = new AbstractAction(){
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(true);
+            }
+        };
+        
+        Action close = new AbstractAction(){
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        };
+
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "showInfo");
+        panel.getActionMap().put("showInfo", showInfo);
+        
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "close");
+        panel.getActionMap().put("close", close);
+        
+        // End Key Bindings
+
         // Main Menu Buttons
         
         // Play
@@ -52,11 +81,19 @@ public class Main {
                     Container cp = f.getContentPane();
                     Hangman b = new Hangman();
                     Component contents = b.createComponents();
+
                     public void actionPerformed(ActionEvent arg) {     
             		cp.add(b);
             		f.getContentPane().add(contents);
                         b.setVisible(true);
                         panel.setVisible(false);
+                        
+                        //Keybind
+                        b.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "showInfo");
+                        b.getActionMap().put("showInfo", showInfo);
+        
+                        b.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "close");
+                        b.getActionMap().put("close", close);
                     }
                 };
                 
@@ -73,6 +110,14 @@ public class Main {
                         cpanel.setVisible(true);
                         cpanel.setLayout(null);
                         cp.add(c);
+                        
+                        //Keybind
+                        c.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "showInfo");
+                        c.getActionMap().put("showInfo", showInfo);
+        
+                        c.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "close");
+                        c.getActionMap().put("close", close);
+                        
                         JButton back = new JButton("Back");
                         back.setBounds(30,325,110,30);
                         back.setToolTipText("Go Back to menu");  
@@ -109,6 +154,14 @@ public class Main {
 
                          panel.setVisible(false);
                          cpanel.setVisible(true);
+                        
+                        // Keybind
+                        c.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F1"), "showInfo");
+                        c.getActionMap().put("showInfo", showInfo);
+        
+                        c.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "close");
+                        c.getActionMap().put("close", close);
+                        
                          cpanel.setLayout(null);
                          cp.add(c);
                          JButton back = new JButton("Back");
