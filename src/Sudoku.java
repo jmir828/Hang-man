@@ -26,20 +26,20 @@ public class Sudoku extends JPanel{
         newGame();
     }
     
-    static JPanel panel;
-    static JPanel mainPanel;
-    static JPanel clockPanel;
-    static JPanel scorePanel;
-    static JButton checkSolution;
-    static JButton end;
-    static int score = Colors.score;
-    static JButton quit;
-    static JFrame frame = new JFrame("Sudoku!"); 
-    static int numberOfRounds;
+    JPanel panel;
+    JPanel mainPanel;
+    JPanel clockPanel;
+    JPanel scorePanel;
+    JButton checkSolution;
+    JButton end;
+    public static int score = 0;
+    JButton quit;
+    JFrame frame = new JFrame("Sudoku!"); 
+    int numberOfRounds;
     String ans;
-    static JLabel scores = new JLabel("Total Score");
-    static JLabel totalScore = null;
-    static String scoreString;
+    JLabel scores = new JLabel("Total Score");
+    JLabel totalScore = null;
+    String scoreString;
     Clock c = new Clock();
     Rectangle r = new Rectangle();
     int count = 0;
@@ -51,6 +51,7 @@ public class Sudoku extends JPanel{
                      6, 2, 8, 1, 5}; //answers of the board
 
     public void newGame() throws IOException{
+        score = Colors.score;
         Font s = new Font("Serif", Font.BOLD, 14);
         UIManager.put("Button.font", s);
         numberOfRounds = 0;
@@ -59,7 +60,7 @@ public class Sudoku extends JPanel{
         clockPanel = new JPanel();
         scorePanel = new JPanel();
         JButton submitButton= new JButton("Submit");
-        checkSolution = new JButton("Sumbit");
+        checkSolution = submitButton;
         quit = new JButton("Quit");
         end = new JButton("End");
         checkSolution.setToolTipText("Click To Submit Solution");
@@ -120,6 +121,7 @@ public class Sudoku extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 numberOfRounds++;
+                System.out.println("SCORE_SUDOKU: " + score);
                 if(checkBoard() || numberOfRounds <= 5){
                    panel.setVisible(false);
                    scorePanel.setVisible(true);
@@ -207,6 +209,7 @@ public class Sudoku extends JPanel{
     
     public boolean checkBoard(){
         int incorrect = 0;
+        int totalPossible = 540;
         boolean result = true;
         
         for(int i = 0; i < textFields.length; i++){
@@ -230,8 +233,9 @@ public class Sudoku extends JPanel{
             score+= 540;
             return result;
         }else{
-            score-=incorrect;
-            if(score <= 0){ 
+            totalPossible-=incorrect;
+            score+=totalPossible;
+            if(score < 0){ 
                 score = 0;
             }
             return result; }

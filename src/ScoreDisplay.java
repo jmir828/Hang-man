@@ -87,20 +87,6 @@ public class ScoreDisplay extends JPanel {
         
         viewScoreButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-//                panel.setVisible(false);
-//                //scorePanel.setVisible(true);
-//                mainPanel.add(scorePanel, BorderLayout.CENTER);
-//                scoreString = String.valueOf(score);
-////                totalScore = new JLabel (scoreString);
-////                totalScore.setFont( new Font("Helvetica", Font.PLAIN, 28) );
-////                totalScore.setBounds(220,50,300,100);
-////                totalScore.setForeground(Color.blue);
-////                scorePanel.add(totalScore);
-//                scorePanel.add(menuButton);
-//                menuButton.setBounds(10,300,130,30);
-//                
-//                menuButton.addActionListener(new ActionListener(){
-//                    public void actionPerformed(ActionEvent e){
                         repaint();
                         revalidate();
                         frame.dispose();  

@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 public class Colors extends JPanel {
     private static int numberOfRounds;
-    public static int score = Hangman.score;
+    public static int score = 0;
     
     public static JPanel panel;
     public static JPanel mainPanel;
@@ -57,6 +57,7 @@ public class Colors extends JPanel {
     // method: newGame
     // purpose: create a new Game
     public void newGame()  {
+        score = Hangman.score;
         numberOfRounds = 0;
         panel = new JPanel();
         mainPanel = new JPanel(new BorderLayout(3,3));
@@ -147,6 +148,7 @@ public class Colors extends JPanel {
     // method: newWord
     // purpose: selects new color (word) randomly from selection
     public void newWord(){
+        System.out.println("SCORE_COLORS: " + score);
         Random randomWord = new Random();
         String [] wordColor = {"BLUE", "GREEN", "RED","PURPLE", "YELLOW"};
         
@@ -265,17 +267,6 @@ public class Colors extends JPanel {
             arraySize--;  
         }
 }
-//    // method: displayScore
-//    // purpose: this method displays player score when 'Colors' game is over
-//    public void displayScore(){
-//        ScoreDisplay s = new ScoreDisplay();
-//            try {
-//                s.run();
-//            } catch (IOException ex) {
-//                Logger.getLogger(Colors.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//           frame.dispose();
-//    }
     
     public void startSudoku(){
             Sudoku s = new Sudoku();
@@ -296,7 +287,6 @@ public class Colors extends JPanel {
             newWord();}
         else{
             frame.dispose();
-            //displayScore();
             startSudoku();
         }
     }
